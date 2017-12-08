@@ -1,0 +1,37 @@
+security:
+    # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+
+    encoders:
+      Symfony\Component\Security\Core\User\User: bcrypt
+
+    providers:
+        dev_time: { memory: ~ }
+        staging:
+          memory:
+            users:
+              micha:
+                password: $2y$13$JdkHhFt8FoBtBB2d5GXS7Oqcoim2A9GhNS1UlodYvbexSY.39yCuO
+                roles: 'ROLE_ADMIN'
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            provider: staging
+            anonymous: ~
+            http_basic: ~
+            
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # https://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # https://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+    access_control:
+      - { path: /edit/, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER

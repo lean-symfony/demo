@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ActorRepository")
@@ -20,6 +21,7 @@ class Actor
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @NotBlank()
      *
      * @var string
      */
@@ -66,7 +68,7 @@ class Actor
     /**
      * @param string $first_name
      */
-    public function setFirstName(string $first_name)
+    public function setFirstName($first_name)
     {
         $this->first_name = $first_name;
     }
@@ -82,7 +84,7 @@ class Actor
     /**
      * @param string $last_name
      */
-    public function setLastName(string $last_name)
+    public function setLastName($last_name)
     {
         $this->last_name = $last_name;
     }

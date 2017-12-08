@@ -9,6 +9,8 @@ framework:
     #    # With this config, PHP's native session handling is used
     #    handler_id: ~
 
+    session: ~
+
     #esi: ~
     #fragments: ~
     php_errors:
