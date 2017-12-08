@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ActorRepository")
  */
-class Actor
+class Actor implements \JsonSerializable
 {
     /**
      * @ORM\Id
@@ -103,5 +103,20 @@ class Actor
     public function setLastUpdate(\DateTime $last_update)
     {
         $this->last_update = $last_update;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            "id" => $this->id,
+            "name" => $this->first_name . " " . $this->last_name,
+        ];
     }
 }

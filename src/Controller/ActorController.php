@@ -6,6 +6,7 @@ use App\Form\ActorType;
 use App\Repository\ActorRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -58,5 +59,19 @@ class ActorController extends Controller
         return $this->render('actor/edit.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @param ActorRepository $actorRepository
+     * @return JsonResponse
+     *
+     * @Route("/actor/export")
+     */
+    public function export(ActorRepository $actorRepository)
+    {
+        $actors = $actorRepository->findAll();
+
+        //return new JsonResponse();
+        return $this->json($actors);
     }
 }

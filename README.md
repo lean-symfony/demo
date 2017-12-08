@@ -11,6 +11,11 @@
 * maker
 * debug
 
+Für das Testen
+
+* phpunit
+* browser-kit
+
 ### Runtime Features
 
 * annotations
